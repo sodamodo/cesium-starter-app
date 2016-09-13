@@ -12,6 +12,232 @@
 </head>
 <body>
   <div id="cesiumContainer"></div>
+  
+  
   <script src="Source/App.js"></script>
+  <script>
+  
+    // var viewer = new Cesium.Viewer('cesiumContainer');
+	
+	var viewer = new Cesium.Viewer('cesiumContainer', {
+    imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
+        url : 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
+    }),
+    baseLayerPicker : false
+	});
+	
+	var layers = viewer.imageryLayers;
+	
+	
+	// Mapbox tile provider
+	var mapbox = new Cesium.MapboxImageryProvider({
+    mapId: 'sodamodo.6koenysw',
+    accessToken: 'pk.eyJ1Ijoic29kYW1vZG8iLCJhIjoiUFBCM2Y0TSJ9.W0fxATkfvd37oXqUsavcIQ'
+	});
+	
+	
+	
+	
+	
+	var placemark1 = viewer.entities.add({
+		name : 'Hall County 1955',
+		position : Cesium.Cartesian3.fromDegrees(-83.8255, 34.2988),
+		point : {
+		pixelSize : 5,
+			color : Cesium.Color.RED,
+			outlineColor : Cesium.Color.WHITE,
+			outlineWidth : 2
+		},
+	  label : {
+		text : 'Hall County 1955 Map',
+		font : '14pt monospace',
+		style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+		outlineWidth : 2,
+		verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+		pixelOffset : new Cesium.Cartesian2(0, -9)
+		}
+	});
+	
+	placemark1.description = '<img src="../images/hall1955.jpg" width="195" height="189">'
+
+	var placemark2 = viewer.entities.add({
+		name : 'Hall County Neighborhood History',
+		position : Cesium.Cartesian3.fromDegrees(-83.715, 34.414),
+		point : {
+		pixelSize : 5,
+			color : Cesium.Color.RED,
+			outlineColor : Cesium.Color.WHITE,
+			outlineWidth : 2
+		},
+	  label : {
+		text : 'Hall County Neighborhood',
+		font : '14pt monospace',
+		style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+		outlineWidth : 2,
+		verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+		pixelOffset : new Cesium.Cartesian2(0, -9)
+		}
+	});
+
+	placemark2.description = '<img src="../images/placemark2.jpg" width="195" height="189">' +
+							 '<br><h1><a target="_blank" href="http://www.georgiaencyclopedia.org/nge/Article.jsp?id=h-2343&hl=y">More information</a><h1>'
+											
+	var placemark3 = viewer.entities.add({
+		name : 'Disappearances',
+		position : Cesium.Cartesian3.fromDegrees(-83.87982, 34.32224),
+		point : {
+		pixelSize : 5,
+			color : Cesium.Color.RED,
+			outlineColor : Cesium.Color.WHITE,
+			outlineWidth : 2
+		},	 
+		label : {
+		text : 'Disappearances',
+		font : '14pt monospace',
+		style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+		outlineWidth : 2,
+		verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+		pixelOffset : new Cesium.Cartesian2(0, -9)
+		}
+	});		
+
+	placemark3.description =
+				
+            	'<h1>Lady of the Lake</h1> '
+                + '<h2>Susie Roberts-Nix & Margie Roberts-Snow</h2><br><h2>Susie Nix and Margie Snow are sisters who once lived on Holly Drive, a neighborhood formerly known as Sandy Flat,'
+				+ 'near Historic Green Street in downtown Gainesville.  Their family owned and operated a self sustaining farm before and during lake construction, that they watched slowly'
+				+'fade from existence as the lake&#8217s waters began to rise.  Margie was twelve years old at the time and Susie was a couple years behind her at age ten.  Their family farmed corn on the bottom lands near the Chattahoochee River and eventually turned to moonshine and cattle, as well as assisting at the local mule barn when the water took their largest source of income, the corn fields.  Their home was not destroyed by the lake, but they lost something much more valuable than any piece of land could be appraised at...their mother.</h2> '
+				+ '<br>'
+                + '<h2>Susie Roberts disappears in 1958 after attending a dance in nearby Dawson County.'
+				+ 'Her family was unsure of her whereabouts until 32 years later on November 1, 1990, when her car and remains were found in the waters of Lake Lanier.</h2>'
+        
+				+'<a target="_blank" href="https://www.youtube.com/watch?v=-BaCWMDzI88" title="Video"><h2>Interview with the daughters</h2></a>'
+					
+	
+	
+	var placemark4 = viewer.entities.add({
+		name : '',
+		position : Cesium.Cartesian3.fromDegrees(-84.07561, 34.16258),
+		point : {
+		pixelSize : 5,
+			color : Cesium.Color.RED,
+			outlineColor : Cesium.Color.WHITE,
+			outlineWidth : 2
+		},	 
+		label : {
+		text : 'Buford Dam',
+		font : '14pt monospace',
+		style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+		outlineWidth : 2,
+		verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+		pixelOffset : new Cesium.Cartesian2(0, -9)
+		}
+	});
+	
+	
+	
+	placemark4.description =
+	
+                '<h1>Buford Dam Dedication Ceremony: October 9, 1957</h1><h2>'
+	  	+ 'This film, donated by Mrs. Susan Ellis of Gainesville, documents the Buford Dam Dedication Ceremony, held on October 9, 1957. ' 
+	  	+ 'As the film shows, the crowd gathered on top of the dams intake structure and local and state dignitaries arrived by boat to mark the occasion. '
+	  	+ 'Dignitaries included Georgia Governor Marvin Griffin, US Senators Richard Russell and Herman Talmadge, US Congressmen James Davis and Phil Landrum, '
+	  	+ 'and Atlanta Mayor William B. Hartsfield.  Atlanta businessman Jim Woodruff, Sr. and his son, Jim Woodruff, Jr., also spoke at the event, marking their '
+	  	+ 'leadership in efforts to manage resources and development in the lower Chattahoochee River Valley. '
+	  	+ 'Representatives from the US Army Corps of Engineers highlighted the benefits of Buford Dam, including improved flood control.  The Third Army Band provided music for the event.</h2>'
+	  	+ '<h2>At the end of the official ceremony, Mayor Hartsfield christened the new dam with Coca Cola bottles containing water from the three river systems that fed into the new public works project: the Chattahoochee, the Appalachicola, and Flint River systems. '
+	  	+ 'Signaling the importance of the new Lake Lanier, each dignitary received the honorary title of Commodore from the University Yacht Club. </h2>'
+	  	+ '<h2>As the Ellis film shows, in addition to remarks from dignitaries, the ceremony included a fly-over by nine Lockheed C-130 transports and three Navy bombers.  The film also documents the most dramatic change to the landscape, with boats skimming over the surface of Lake Lanier.</h2>'
+	  	+ '<h2>Source: Robert David Coughlin, Lake Sidney Lanier A Storybook Site: The Early History and Construction of Lake Lanier (Atlanta: RDC Publications, 1998), pgs. 239-248.</h2>'
+                + '<a target="_blank" href="https://www.youtube.com/watch?v=LRaR5vZp8UU" title="Video"><h2>Click to see video<h2></a>'
+                
+
+	var placemark7 = viewer.entities.add({
+		name : '',
+		position : Cesium.Cartesian3.fromDegrees(-83.85164722, 34.31444722),
+		point : {
+		pixelSize : 5,
+			color : Cesium.Color.RED,
+			outlineColor : Cesium.Color.WHITE,
+			outlineWidth : 2
+		},	 
+		label : {
+		text : 'Nix/Snow: Property/Corn Fields',
+		font : '14pt monospace',
+		style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+		outlineWidth : 2,
+		verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+		pixelOffset : new Cesium.Cartesian2(0, -9)
+		}
+	});				
+	
+	placemark7.description =
+	
+	'<h1>Susie Roberts-Nix & Margie Roberts-Snow</h1><br /><h2>Susie Nix and Margie Snow are sisters who once lived on Holly Drive, a neighborhood formerly known as Sandy Flat, near Historic Green Street in downtown Gainesville.  Their family owned and operated a self sustaining farm before and during lake construction, that they watched slowly fade from existence as the lake&#8217s waters began to rise.  Margie was twelve years old at the time and Susie was a couple years behind her at age ten.  Their family farmed corn on the bottom lands near the Chattahoochee River and eventually turned to moonshine and cattle, as well as assisting at the local mule barn when the water took their largest source of income, the corn fields.  Their home was not destroyed by the lake, but they lost something much more valuable than any piece of land could be appraised at...their mother.</h2> '
+				+ '<br /><h1>Videos:</h1><br />'
+				
+                + '<h2>Mr. Roberts used moonshine as a way to supplement income he earned from cattle trading after losing his corn fields.</h2>'
+				+'<br>'
+				+ '<h2><a target="_blank" href="https://www.youtube.com/watch?v=-9aaLL9Vf6E">Moonshine Video</a></h2>'
+				+'<br>'
+				+ '<h2>After the loss of his corn fields, Mr. Roberts continued to raise cattle and eventually took over managing a local mule barn located in Gainesville, GA.</h2>'
+				+'<a target="_blank" href="https://www.youtube.com/watch?v=-OC-ZuDUFyqY"><h2>Cattle Business & Mule Barn Video</h2></a>'
+				+'<br>'
+				+ '<h2>Ms. Nix and Ms. Snow discuss how the lake disrupted neighborhoods and displaced friends and family resulting in a loss of community and their first experience with a &#8217yankee&#8217.</h2>'
+				+'<br>'
+				+'<a target="_blank" href="https://www.youtube.com/watch?v=-OC-ZuDUFyqY"><h2>Lake Brought Change</h2></a>'
+				+'<br>'
+				+'<h2>Ms. Nix and Ms. Snow discuss how Hall County once had a "small town feel" but that when the lake came in it took some of that away.</h2>'
+				+'<a target="_blank" href="https://www.youtube.com/watch?v=uAmWdE2iKvA"><h2>Hall County Small Town Feel</h2></a>'
+				+'<br>'
+				+ '<h2>Ms. Nix and Ms. Snow speak about how the area where they spent their childhood became known as Sandy Flat.</h2>'
+				+'<a target="_blank" href="https://www.youtube.com/watch?v=56VdattTMlg"><h2>Sandy Flat Community Video</h2></a>'
+				+'<br>'
+	
+	var placemark9 = viewer.entities.add({
+		name : '',
+		position : Cesium.Cartesian3.fromDegrees(-83.8512278, 34.3113944),
+		point : {
+		pixelSize : 5,
+			color : Cesium.Color.RED,
+			outlineColor : Cesium.Color.WHITE,
+			outlineWidth : 2
+		},	 
+		label : {
+		text : 'Tommy Aaron: Golf Course',
+		font : '14pt monospace',
+		style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+		outlineWidth : 2,
+		verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+		pixelOffset : new Cesium.Cartesian2(0, -9)
+		}
+	});
+	
+	placemark9.description =
+	
+	'<h1>Tommy Aaron</h1><br>'
+	+'<h2>Tommy Aaron, a retired professional golfer, spent much of his childhood and'
+	+'teenage years in Gainesville, Georgia practicing for the pinnacle of his career on a muddy &#8217nine-hole beat up rock pile&#8217 golf course.  Little did the town know, one of their own would become the 1973 Masters Champion, earning the coveted green jacket.  Despite how important the original golf course was in Aaron&#8217s life, Lake Lanier would take it and Gainesville would not see another until years later.  </h2> '
+	+'<br><h1>Videos:</h1><br>'
+	+'<h2>Tommy talks about how the government was paid for the land the golf course was on.</h2>'
+	+'<br>'
+	+'<a target="_blank" href="https://www.youtube.com/watch?v=HyTG5NjwJlM"><h2>Government Gets Theirs Too</h2></a>'
+	+'<br>'
+	+'<br>'
+	+ '<h2>Before Lake Lanier came in, golf players had a nice view of the Chattahoochee River as they played. .</h2>'
+	+'<br>'
+	+'<a target="_blank" href="https://www.youtube.com/watch?v=RjoCPEnGUzo"><h2>Golfing with a View</h2></a>'
+	+'<br>'
+	+'<br>'
+	+ '<h2>Aaron describes the layout of the Gainesville golf course prior to Lake Lanier&#8217s construction and trying to play golf in the mud.</h2>'
+	+'<br>'
+	+'<a target="_blank" href="https://www.youtube.com/watch?v=i1LPVI7EKro"><h2>A Rock Pile Golf Course</h2></a>'
+	
+	
+	
+	viewer.zoomTo(viewer.entities);
+	
+  </script>
+</body>
 </body>
 </html>
